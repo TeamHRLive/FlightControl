@@ -56,12 +56,11 @@ public class RewardManager {
 
             String cooldownStr = conf.getConfigurationSection(categoryName).getString("cooldown");
             cooldown = MathUtil.calculateDuration(cooldownStr) * 20; // Convert to ticks
-
             commands = conf.getConfigurationSection(categoryName).getStringList("commands");
 
             if (category != null) {
                 rewardTasks.add(new Reward(category, commands).runTaskTimer(pl, 0, cooldown));
-                loaded(categoryName, commands, PlayerUtil.durationToWords(cooldown * 50)); // Convert from ticks to ms
+                loaded(categoryName, commands, PlayerUtil.durationToWords(cooldown / 20));
             } else {
                 nonexistent(categoryName);
             }
