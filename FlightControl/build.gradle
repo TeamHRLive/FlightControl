@@ -32,7 +32,7 @@ dependencies {
     compileOnly ('com.github.TechFortress:GriefPrevention:17.0.0') { exclude(group: "*") } // https://github.com/TechFortress/GriefPrevention/
     compileOnly ('com.griefdefender:api:2.1.0-SNAPSHOT') { exclude(group: "*") } // https://github.com/bloodmc/GriefDefenderAPI
     compileOnly ('world.bentobox:bentobox:2.0.0-SNAPSHOT') { exclude(group: "*") } // https://github.com/bentoboxworld
-    compileOnly ('net.william278:HuskTowns:2.6.1') { exclude(group: "*") } // https://github.com/WiIIiam278/HuskTowns
+    compileOnly ('net.william278.husktowns:husktowns-bukkit:3.0') { exclude(group: "*") } // https://github.com/WiIIiam278/HuskTowns
     compileOnly ("io.github.fabiozumbi12.RedProtect:RedProtect-Core:8.1.1") { exclude(group: "*") }
     compileOnly ("io.github.fabiozumbi12.RedProtect:RedProtect-Spigot:8.1.1") { exclude(group: "*") }
     compileOnly ('com.bgsoftware:SuperiorSkyblockAPI:2023.3') { exclude(group: "*") }
