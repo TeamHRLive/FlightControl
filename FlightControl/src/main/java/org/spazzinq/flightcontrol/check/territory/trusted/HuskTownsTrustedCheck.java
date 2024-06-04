@@ -5,7 +5,7 @@
 
 package org.spazzinq.flightcontrol.check.territory.trusted;
 
-import net.william278.husktowns.api.HuskTownsAPI;
+import net.william278.husktowns.api.BukkitHuskTownsAPI;
 import net.william278.husktowns.claim.TownClaim;
 import net.william278.husktowns.town.Member;
 import net.william278.husktowns.town.Town;
@@ -15,7 +15,8 @@ import org.spazzinq.flightcontrol.check.territory.TerritoryCheck;
 import java.util.Optional;
 
 public class HuskTownsTrustedCheck extends TerritoryCheck {
-    @Override public boolean check(Player p) {
+    @Override
+    public boolean check(Player p) {
         Optional<TownClaim> townClaim = getTownClaim(p);
         Optional<Member> member = getMember(p);
 
@@ -24,10 +25,10 @@ public class HuskTownsTrustedCheck extends TerritoryCheck {
     }
 
     private Optional<TownClaim> getTownClaim(Player p) {
-        return HuskTownsAPI.getInstance().getClaimAt(p.getLocation());
+        return BukkitHuskTownsAPI.getInstance().getClaimAt(p.getLocation());
     }
 
     private Optional<Member> getMember(Player p) {
-        return HuskTownsAPI.getInstance().getUserTown(p);
+        return BukkitHuskTownsAPI.getInstance().getUserTown(p);
     }
 }
