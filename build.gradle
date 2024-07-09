@@ -13,8 +13,8 @@ subprojects {
         maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
         // Bungeecord
         maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
-        // bStats
-        maven { url = 'https://repo.codemc.io/repository/maven-public/' }
+        // bStats, Bentobox
+        maven { url = 'https://repo.codemc.org/repository/maven-public/' }
         // WorldEdit, WorldGuard
         maven { url = 'https://maven.enginehub.org/repo/' }
         // FactionsUUID
@@ -37,7 +37,5 @@ subprojects {
         maven { url = 'https://repo.bg-software.com/repository/api/' }
         // Towny
         maven { url = 'https://repo.glaremasters.me/repository/towny/' }
-        // Towny
-        maven { url = 'https://repo.glaremasters.me/repository/bloodshot/' }
     }
 }

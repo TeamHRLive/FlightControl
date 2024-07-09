@@ -19,27 +19,28 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 
+@Setter
+@Getter
 public class ConfManager extends StorageManager {
-    @Getter @Setter private boolean autoEnable;
-    @Getter @Setter private boolean autoReload;
-    @Getter @Setter private boolean autoUpdate;
-    @Getter @Setter private boolean inGameSupport;
+    private boolean autoEnable;
+    private boolean autoReload;
+    private boolean autoUpdate;
+    private boolean inGameSupport;
 
-    @Getter @Setter private float defaultRawFlightSpeed;
-    @Getter @Setter private float maxRawFlightSpeed;
-    @Getter @Setter private int heightLimit;
+    private float defaultRawFlightSpeed;
+    private float maxRawFlightSpeed;
+    private int heightLimit;
 
-    @Getter @Setter private boolean combatChecked;
-    @Getter @Setter private boolean cancelFall;
-    @Getter @Setter private boolean vanishBypass;
-    @Getter @Setter private boolean trailEnabled;
+    private boolean combatChecked;
+    private boolean cancelFall;
+    private boolean vanishBypass;
+    private boolean trailEnabled;
 
-    @Getter @Setter private boolean nearbyCheck;
-    @Getter @Setter private boolean isNearbyCheckEnemies;
-    @Getter @Setter private double nearbyRangeSquared;
+    private boolean nearbyCheck;
+    private boolean isNearbyCheckEnemies;
+    private double nearbyRangeSquared;
 
-    @Getter @Setter private String flyCommandName;
-    @Getter @Setter private String aeEnchantName;
+    private String flyCommandName;
 
     public ConfManager() {
         super("config.yml");
@@ -74,7 +75,6 @@ public class ConfManager extends StorageManager {
 
         // Strings
         flyCommandName = conf.getString("settings.fly_command_name", "fly");
-        aeEnchantName = conf.getString("settings.ae_enchant_name");
 
         // Load other stuff that have separate methods
         loadSounds();
@@ -88,13 +88,6 @@ public class ConfManager extends StorageManager {
         if (conf.isConfigurationSection("territory")) {
             pl.getLogger().info("Territories have migrated to the categories.yml!");
             conf.deleteNode("territory");
-            modified = true;
-        }
-
-        // 4.5.8 - add AdvancedEnchantments custom enchant support
-        if (!conf.isString("settings.ae_enchant_name")){
-            pl.getLogger().info("Added AdvancedEnchantments custom enchant name setting!");
-            conf.addSubnodes(Collections.singleton("ae_enchant_name: \"Flight\""), "settings.vanish_bypass");
             modified = true;
         }
 
@@ -134,6 +127,13 @@ public class ConfManager extends StorageManager {
             modified = true;
         }
 
+        // 5.0.0
+        if (conf.isString("settings.ae_enchant_name")) {
+            pl.getLogger().info("Removed \"settings.ae_enchant_name\" from the config!");
+            conf.deleteNode("settings.ae_enchant_name");
+            modified = true;
+        }
+
         if (modified) {
             conf.save();
         }
@@ -143,7 +143,6 @@ public class ConfManager extends StorageManager {
     @Override protected void migrateFromOldVersion() {
         if (conf.isBoolean("auto_update")) {
             try {
-                //noinspection UnstableApiUsage
                 Files.move(confFile, new File(pl.getDataFolder(), "config_old.yml"));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -183,7 +182,9 @@ public class ConfManager extends StorageManager {
         if (conf.isConfigurationSection(key)) {
             ConfigurationSection soundType = conf.getConfigurationSection(key);
 
-            sound = Sound.valueOf(soundType.getString("sound"), soundType.getDouble("volume"), soundType.getDouble("pitch"));
+            if (soundType != null) {
+                sound = Sound.valueOf(soundType.getString("sound"), soundType.getDouble("volume"), soundType.getDouble("pitch"));
+            }
         }
 
         return sound;

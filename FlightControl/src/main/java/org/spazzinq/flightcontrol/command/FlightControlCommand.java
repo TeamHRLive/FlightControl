@@ -11,7 +11,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.spazzinq.flightcontrol.FlightControl;
-import org.spazzinq.flightcontrol.check.always.AdvancedEnchantmentsCheck;
 import org.spazzinq.flightcontrol.manager.ConfManager;
 import org.spazzinq.flightcontrol.manager.LangManager;
 import org.spazzinq.flightcontrol.object.FlyPermission;
@@ -216,11 +215,6 @@ public class FlightControlCommand extends TemplateCommand {
                             pl.getLogger().info("Only players can use this command (it's information based on the " +
                                     "player's location)");
                         }
-                        break;
-                    case "advancedenchantments":
-                        msg(s, "Enchants: " + new AdvancedEnchantmentsCheck(pl).getBootEnchants((Player) s).keySet()
-                                + "\nConfName: " + pl.getConfManager().getAeEnchantName()
-                                + "\nEquivalent: " + new AdvancedEnchantmentsCheck(pl).check((Player) s));
                         break;
                     default:
                         msg(s, loadHelp(args));

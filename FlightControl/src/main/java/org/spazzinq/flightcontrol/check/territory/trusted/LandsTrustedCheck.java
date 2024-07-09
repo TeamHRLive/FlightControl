@@ -5,7 +5,8 @@
 
 package org.spazzinq.flightcontrol.check.territory.trusted;
 
-import me.angeschossen.lands.api.integration.LandsIntegration;
+import me.angeschossen.lands.api.LandsIntegration;
+import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import org.bukkit.entity.Player;
 import org.spazzinq.flightcontrol.FlightControl;
@@ -15,12 +16,12 @@ public final class LandsTrustedCheck extends TerritoryCheck {
     private final LandsIntegration landsIntegration;
 
     public LandsTrustedCheck() {
-        landsIntegration = new LandsIntegration(FlightControl.getInstance());
+        landsIntegration = LandsIntegration.of(FlightControl.getInstance());
     }
 
     @Override public boolean check(Player p) {
-        Land land = landsIntegration.getLand(p.getLocation());
+        Area area = landsIntegration.getArea(p.getLocation());
 
-        return land != null && land.getTrustedPlayers().contains(p.getUniqueId());
+        return area != null && area.isTrusted(p.getUniqueId());
     }
 }

@@ -92,10 +92,6 @@ public class CheckManager {
         if (pluginLoading("CrazyEnchantments") && pm.getPlugin("CrazyEnchantments").getDescription().getVersion().startsWith("1.8")) {
             alwaysChecks.addEnabled(new CrazyEnchantmentsCheck());
         }
-        // AdvancedEnchantments Check
-        if (pluginLoading("AdvancedEnchantments") && !"disabled".equals(pl.getConfManager().getAeEnchantName())) {
-            alwaysChecks.addEnabled(new AdvancedEnchantmentsCheck(pl));
-        }
         // SaberFactions Check
         if (pluginLoading("Factions") && pm.getPlugin("Factions").getDescription().getAuthors().contains("Driftay")) {
             alwaysChecks.addEnabled(new SaberFactionsCheck());

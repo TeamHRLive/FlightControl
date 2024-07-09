@@ -30,10 +30,6 @@ settings:
   # Supports: EssentialsX, PremiumVanish, SuperVanish
   # Prevents flight disabling while in vanish
   vanish_bypass: true
-  # Supports: AdvancedEnchantments
-  # Set as the enchant name to support custom flight enchantments
-  # Set to "disabled" to disable the check
-  ae_enchant_name: "Flight"
 
 tempfly:
   # Should tempfly decrease even when the player isn't flying?
@@ -43,7 +39,7 @@ tempfly:
 nearby_disable:
   # Disables flight when a player is within a certain block range (set to -1 to disable)
   range: -1
-  # Supports: Factions by MassiveCraft, FactionsUUID, SavageFactions
+  # Supports: FactionsUUID
   # Makes the "range" setting only for faction enemies
   factions_enemy: true
 
@@ -63,7 +59,7 @@ sounds:
   every_disable: false
   # Please use the sound names from the "Sound Event" column
   # 1.8 List: https://minecraft.gamepedia.com/Sounds.json/Java_Edition_values_before_1.9
-  # 1.15 List: https://minecraft.gamepedia.com/Sounds.json/Java_Edition_values
+  # Current (1.21) List: https://minecraft.gamepedia.com/Sounds.json/Java_Edition_values
   enable:
     sound: "NONE"
     pitch: 1

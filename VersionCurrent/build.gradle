@@ -2,14 +2,11 @@ dependencies {
     implementation project(':API')
     implementation project(':Multiversion')
 
-    compileOnly ('org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT') { exclude(group: "*") }
+    compileOnly ('org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT') { exclude(group: "*") }
     compileOnly ('com.sk89q.worldedit:worldedit-bukkit:7.3.0-SNAPSHOT') { exclude(group: "*") }
     compileOnly ('com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT') {
         exclude group: 'com.google.code.gson', module: 'gson'
     }
 
-    compileOnly('com.massivecraft:Factions:1.6.9.5-U0.6.35') { exclude(group: "*") }
-
-    compileOnly files('../lib/MassiveCore-2.14.0.jar', '../lib/Factions-2.14.0.jar')
-    compileOnly files('../lib/FactionsX-1.2.jar')
+    compileOnly('com.massivecraft:Factions:1.6.9.5-U0.6.35') { exclude(group: "*") } // GPLv3
 }

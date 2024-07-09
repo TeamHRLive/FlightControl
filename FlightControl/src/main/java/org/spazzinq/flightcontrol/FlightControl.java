@@ -16,7 +16,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.spazzinq.flightcontrol.command.*;
 import org.spazzinq.flightcontrol.manager.*;
-import org.spazzinq.flightcontrol.multiversion.Particle;
+import org.spazzinq.flightcontrol.multiversion.FlightParticle;
 import org.spazzinq.flightcontrol.multiversion.current.ParticleNewAPI;
 import org.spazzinq.flightcontrol.multiversion.legacy.ParticleOldAPI;
 
@@ -40,7 +40,7 @@ public final class FlightControl extends org.bukkit.plugin.java.JavaPlugin {
     // Multi-version management
     @Getter private CheckManager checkManager;
     @Getter private HookManager hookManager;
-    @Getter private Particle particle;
+    @Getter private FlightParticle particle;
     // In-game management
     @Getter private FlightManager flightManager;
     @Getter private PlayerManager playerManager;

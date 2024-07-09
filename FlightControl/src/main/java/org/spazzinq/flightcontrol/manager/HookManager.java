@@ -11,8 +11,6 @@ import org.spazzinq.flightcontrol.FlightControl;
 import org.spazzinq.flightcontrol.multiversion.FactionsGenericHook;
 import org.spazzinq.flightcontrol.multiversion.WorldGuardGenericHook;
 import org.spazzinq.flightcontrol.multiversion.current.FactionsUUIDHook;
-import org.spazzinq.flightcontrol.multiversion.current.FactionsXHook;
-import org.spazzinq.flightcontrol.multiversion.current.MassiveFactionsHook;
 import org.spazzinq.flightcontrol.multiversion.current.WorldGuard7Hook;
 import org.spazzinq.flightcontrol.multiversion.legacy.WorldGuard6Hook;
 import org.spazzinq.flightcontrol.placeholder.ClipPlaceholder;
@@ -49,16 +47,8 @@ public class HookManager {
     }
 
     private void loadFactionsHook() {
-        if (pluginLoading("FactionsX")) {
-            factionsHook = new FactionsXHook();
-        } else if (pluginLoading("Factions")) {
-            String website = pm.getPlugin("Factions").getDescription().getWebsite();
-
-            if (website != null && website.equals("https://www.massivecraft.com/factions")) {
-                factionsHook = new MassiveFactionsHook();
-            } else {
-                factionsHook = new FactionsUUIDHook();
-            }
+        if (pluginLoading("Factions")) {
+            factionsHook = new FactionsUUIDHook();
         }
     }
 

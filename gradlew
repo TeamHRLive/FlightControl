@@ -1,22 +1,5 @@
 #!/usr/bin/env sh
 
-#
-# This file is part of FlightControl, which is licensed under the MIT License.
-# Copyright (c) 2024 George Fang
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##############################################################################
 ##
 ##  Gradle start up script for UN*X
