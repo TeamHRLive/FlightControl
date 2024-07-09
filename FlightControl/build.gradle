@@ -16,7 +16,7 @@ dependencies {
     compileOnly ('io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT')
 
     // Placeholders
-    compileOnly ('me.clip:placeholderapi:2.11.5') { exclude(group: "*") } // https://github.com/PlaceholderAPI/PlaceholderAPI/releases/tag/2.11.5
+    compileOnly ('me.clip:placeholderapi:2.11.6') { exclude(group: "*") } // https://github.com/PlaceholderAPI/PlaceholderAPI/releases/tag/2.11.6
 
     // Vanish
     compileOnly ('net.essentialsx:EssentialsX:2.20.1') { exclude(group: "*") }
