@@ -35,7 +35,7 @@ dependencies {
     compileOnly ('net.william278.husktowns:husktowns-bukkit:3.0.5') { exclude(group: "*") } // https://github.com/WiIIiam278/HuskTowns
     compileOnly ("io.github.fabiozumbi12.RedProtect:RedProtect-Core:8.1.1") { exclude(group: "*") }
     compileOnly ("io.github.fabiozumbi12.RedProtect:RedProtect-Spigot:8.1.1") { exclude(group: "*") }
-    compileOnly ('com.bgsoftware:SuperiorSkyblockAPI:2023.3') { exclude(group: "*") }
+    compileOnly ('com.bgsoftware:SuperiorSkyblockAPI:2024.1') { exclude(group: "*") }
     compileOnly ('dev.espi:protectionstones:2.10.2') { exclude(group: "*") }
 
     // Factions
