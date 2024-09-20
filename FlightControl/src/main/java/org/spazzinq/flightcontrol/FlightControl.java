@@ -82,7 +82,7 @@ public final class FlightControl extends org.bukkit.plugin.java.JavaPlugin {
     private void registerManagers() {
         boolean isNewSpigotAPI = true;
 
-        for (int i = 8; i < 13; i++) {
+        for (int i = 13; i < 21; i++) {
             if (getServer().getBukkitVersion().contains("1." + i)) {
                 isNewSpigotAPI = false;
                 break;
@@ -96,7 +96,7 @@ public final class FlightControl extends org.bukkit.plugin.java.JavaPlugin {
         updateManager = new UpdateManager();
 
         checkManager = new CheckManager();
-        hookManager = new HookManager(isNewSpigotAPI);
+        hookManager = new HookManager();
         particle = isNewSpigotAPI ? new ParticleNewAPI() : new ParticleOldAPI();
 
         flightManager = new FlightManager();

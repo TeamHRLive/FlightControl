@@ -12,7 +12,6 @@ import org.spazzinq.flightcontrol.multiversion.FactionsGenericHook;
 import org.spazzinq.flightcontrol.multiversion.WorldGuardGenericHook;
 import org.spazzinq.flightcontrol.multiversion.current.FactionsUUIDHook;
 import org.spazzinq.flightcontrol.multiversion.current.WorldGuard7Hook;
-import org.spazzinq.flightcontrol.multiversion.legacy.WorldGuard6Hook;
 import org.spazzinq.flightcontrol.placeholder.ClipPlaceholder;
 
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 public class HookManager {
     private final FlightControl pl;
     private final PluginManager pm;
-    private final boolean isNewSpigotAPI;
 
     @Getter private String hookedMsg;
     private final ArrayList<String> hooked = new ArrayList<>();
@@ -29,9 +27,8 @@ public class HookManager {
     @Getter private WorldGuardGenericHook worldGuardHook = new WorldGuardGenericHook();
     @Getter private FactionsGenericHook factionsHook = new FactionsGenericHook();
 
-    public HookManager(boolean isNewSpigotAPI) {
+    public HookManager() {
         pl = FlightControl.getInstance();
-        this.isNewSpigotAPI = isNewSpigotAPI;
         pm = pl.getServer().getPluginManager();
     }
 
@@ -40,7 +37,7 @@ public class HookManager {
         loadPlaceholderHooks();
 
         if (pluginLoading("WorldGuard")) {
-            worldGuardHook = isNewSpigotAPI ? new WorldGuard7Hook() : new WorldGuard6Hook();
+            worldGuardHook = new WorldGuard7Hook();
         }
 
         printLoadedHooks();
