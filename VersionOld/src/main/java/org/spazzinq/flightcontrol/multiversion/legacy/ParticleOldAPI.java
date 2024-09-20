@@ -5,49 +5,60 @@
 
 package org.spazzinq.flightcontrol.multiversion.legacy;
 
-import org.bukkit.Effect;
+import org.bukkit.Color;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.spazzinq.flightcontrol.multiversion.FlightParticle;
 
 public class ParticleOldAPI implements FlightParticle {
-    private Effect effect = Effect.CLOUD;
-    private float r = 0, g = 0, b = 0, speed = 0F;
-    private int amount = 4, data = 0;
+       private Particle particle = Particle.CLOUD;
+    private Particle.DustOptions o;
+    private int amount = 4;
+    private double extra, x, y, z;
 
-    public void spawn(Location l) {
-        //                    playEffect(to, effect, 0, data, r, g, b, speed, amount, 0);
-        l.getWorld().spigot().playEffect(l, effect, 0, data, r, g, b, speed, amount, 160);
+    public void spawn(Location loc) {
+        if (loc.getWorld() != null) {
+            loc.getWorld().spawnParticle(particle, particle == Particle.CLOUD ? loc.clone().subtract(0, .3, 0) : loc,
+                amount, x, y, z, extra, o, true);
+        }
     }
 
     public void setParticle(String s) {
         try {
-            Effect.valueOf(s);
-        } catch (Exception e) {
-            return;
+            particle = Particle.valueOf(s);
+        } catch (Exception ignored) {
         }
-        if (Effect.valueOf(s).getType() == Effect.Type.PARTICLE) {
-            effect = Effect.valueOf(s);
-        }
-        if (effect == Effect.COLOURED_DUST) {
-            speed = 1;
-            data = 1;
-        } else {
-            speed = 0;
-            data = 0;
+
+        switch (particle) {
+            case REDSTONE, SPELL_MOB, SPELL_MOB_AMBIENT, NOTE -> extra = 1;
+            default -> extra = 0;
         }
     }
 
-    public void setAmount(int amount) { this.amount = amount; }
+    public void setCount(int amount) {
+        this.amount = amount;
+    }
 
     public void setRBG(int r, int g, int b) {
-        if ((r == 0 && g == 0 && b == 0)) {
-            this.r = 0;
-            this.g = 0;
-            this.b = 0;
-        } else {
-            this.r = (r / 255F) - 1;
-            this.g = g / 255F;
-            this.b = b / 255F;
+        x = 0;
+        y = 0;
+        z = 0;
+        o = null;
+        switch (particle) {
+            case REDSTONE:
+                o = new Particle.DustOptions(Color.fromRGB(r, g, b), amount);
+                break;
+            case SPELL_MOB, SPELL_MOB_AMBIENT: {
+                x = r / 255d;
+                y = g / 255d;
+                z = b / 255d;
+                break;
+            }
+            case NOTE:
+                x = r / 24.0;
+                break;
+            default:
+                break;
         }
     }
 }

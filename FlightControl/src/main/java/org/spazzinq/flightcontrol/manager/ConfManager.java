@@ -156,7 +156,7 @@ public class ConfManager extends StorageManager {
 
         if (trailEnabled) {
             pl.getParticle().setParticle(conf.getString("trail.particle"));
-            pl.getParticle().setAmount(conf.getInt("trail.amount"));
+            pl.getParticle().setCount(conf.getInt("trail.amount"));
             String offset = conf.getString("trail.rgb");
             if (offset != null && (offset = offset.replaceAll("\\s+", "")).split(",").length == 3) {
                 String[] xyz = offset.split(",");

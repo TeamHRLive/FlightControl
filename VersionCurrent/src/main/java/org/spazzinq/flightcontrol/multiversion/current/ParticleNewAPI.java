@@ -12,14 +12,13 @@ import org.spazzinq.flightcontrol.multiversion.FlightParticle;
 
 public class ParticleNewAPI implements FlightParticle {
     private Particle particle = Particle.CLOUD;
-    private Particle.DustOptions o;
-    private int amount = 4;
-    private double extra, x, y, z;
+    private Object data;
+    private int count = 4;
 
     public void spawn(Location loc) {
         if (loc.getWorld() != null) {
             loc.getWorld().spawnParticle(particle, particle == Particle.CLOUD ? loc.clone().subtract(0, .3, 0) : loc,
-                amount, x, y, z, extra, o, true);
+                count, data);
         }
     }
 
@@ -28,35 +27,22 @@ public class ParticleNewAPI implements FlightParticle {
             particle = Particle.valueOf(s);
         } catch (Exception ignored) {
         }
-
-        switch (particle) {
-            case REDSTONE, SPELL_MOB, SPELL_MOB_AMBIENT, NOTE -> extra = 1;
-            default -> extra = 0;
-        }
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public void setRBG(int r, int g, int b) {
-        x = 0;
-        y = 0;
-        z = 0;
-        o = null;
+        data = null;
         switch (particle) {
-            case REDSTONE:
-                o = new Particle.DustOptions(Color.fromRGB(r, g, b), amount);
+            case DUST:
+                data = new Particle.DustOptions(Color.fromRGB(r, g, b), count);
                 break;
-            case SPELL_MOB, SPELL_MOB_AMBIENT: {
-                x = r / 255d;
-                y = g / 255d;
-                z = b / 255d;
+            case ENTITY_EFFECT: {
+                data = Color.fromRGB(r, g, b);
                 break;
             }
-            case NOTE:
-                x = r / 24.0;
-                break;
             default:
                 break;
         }

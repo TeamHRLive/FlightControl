@@ -12,7 +12,7 @@ public interface FlightParticle {
 
     void setParticle(String s);
 
-    void setAmount(int amount);
+    void setCount(int count);
 
     void setRBG(int r, int g, int b);
 }
